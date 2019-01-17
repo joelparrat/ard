@@ -1,0 +1,52 @@
+
+Nouvelle version de watercooling.ino
+
+0.1 gestion correcte de OD8
+0.1 suppression signe lecture analogique (0-127)
+0.2 suppression attente lecture dans la loop pour reception commande ordi
+0.3 toute la table srt en eeprom (sauf msr et cmm)
+0.3 parametre et lecture table et adresse en serie
+0.4 correction: suppression trace dans serialEvent
+0.4 correction: remplace SAN par TIO le flag indique maintenant analogique/numerique pour les entrees et les sorties
+0.4 correction: dans fi_numeric plus PD2 et PD7 en dur balaye la table TIO
+0.4 correction: idem fi_analogic
+0.4 correction: idem fi_mesure (adr)
+0.4 correction: idem setup pour initialisation des broches
+0.4 nouveau protocol_0.0.txt
+0.5 correction envoi temperature (protocol_0.0)
+0.5 ajout ecriture en eeprom pour la fonction x (srt[.][.]=..)
+0.6	inscrire le numero de version dans l'eeprom	ajout reception tn=hhhhhhhhhhhhhhhh pour maj adr sonde
+0.7	ajout dans adr[] des sondes de temperature qui ne sont pas en eeprom
+0.7 rs232 passe en 19200 bauds
+0.7 liberer A4 A5 pour i2c
+0.7	TIO pour io I2C
+0.7 remplacer D7 marche/arret par D2 (dans l'eeprom)
+0.7 remplacer D8 pilotage pompe par A3 (dans l'eeprom)
+0.7 gestion du cts par D7
+0.7 gestion du rts par D8
+0.7	la commande ventillo securite/silence pilote aussi la transmission de donnee (envoi tout ou que modif)
+0.7 gestion de i2c
+0.8 cts rts remplace par dtr dsr
+0.8 fi_mesure -> fi_tmpvnt et fi_tmpscr
+0.8 fi_numeric -> fi_nmrvnt et fi_nmrscr
+0.8 fi_analogic -> fi_anlvnt et fi_anlscr
+0.8 fi_commande -> fi_cmmvnt et fi_cmmscr
+0.9 la commande ventilo (silence/securite) n'influence plus la transmission de donnees (toujours securise)
+0.9	ne garder que le mode de transmission securise
+0.9	ATTENTION si t° == 20° et stable comme == seuil il ne se passe rien !!!
+0.9	ATTENTION je pense qu'il y a un probleme de selection d'entree suivante dans le cas ou il en existe plusieur avec la meme entree
+0.9	passer en 10bits (uniquement en send MSR la table srt est toujours en 8bits sinon struct srt)
+0.9	type de sortie asservie
+0.9	entree et/ou sortie i2c
+0.9	dans mmrprt ajouter selection echelle mini max pour l'affichage valeur reelle (ex: 0-1023 --> 0-5v)
+0.9	dans mmrprt selection unitee de mesure (ex: °C V Tr/Mn...)
+0.9	dans mmrprt ajouter la possibilite de mettre a jour la version dans l'eeprom
+0.9	dans mmrprt ajouter un affichage en cas de probleme de version prog ou protocole
+	supprimer srt[MSR][] et srt[CMM][] ???
+	envoyer le contenu de l'eeprom en debut de prog
+	commutateur (ou ordi) 3 positions arret marche auto pour l'eclairage et le mode silence
+	affichage du voyant access disque
+	TIO pour entree SPI RS232 ???
+	pouvoir changer de groupe et adresse carte (commande u)
+	pouvoir changer le nombre de bit des donnees (9-12) attention changer aussi attente entre chaque lecture (owr+anl) (v)
+
